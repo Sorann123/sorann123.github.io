@@ -13,6 +13,7 @@
       padding: 0;
       color: #333;
       line-height: 1.8;
+      scroll-behavior: smooth;
     }
     header {
       background: linear-gradient(90deg, #1a5ab3 0%, #2c7be5 100%);
@@ -21,9 +22,6 @@
       display: flex;
       align-items: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
     .header-logo {
       background: white;
@@ -53,6 +51,48 @@
       font-size: 18px;
       font-weight: bold;
       color: #e0eaff;
+    }
+    nav.global-nav {
+      background: #154284;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav.global-nav ul {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      display: flex;
+    }
+    nav.global-nav li {
+      flex: 1;
+    }
+    nav.global-nav a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      padding: 12px 0;
+      font-weight: bold;
+      font-size: 15px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.3s;
+    }
+    nav.global-nav a:hover {
+      background: #2c7be5;
+    }
+    .breadcrumb {
+      max-width: 1600px;
+      margin: 10px auto;
+      padding: 0 30px;
+      font-size: 13px;
+      color: #666;
+    }
+    .breadcrumb a {
+      color: #2c7be5;
+      text-decoration: none;
     }
     .container {
       max-width: 1600px;
@@ -138,19 +178,42 @@
       padding: 40px 50px;
       min-width: 0;
     }
+    .toc {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+    .toc-title {
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: block;
+      color: #1a5ab3;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    .toc ul {
+      list-style: none;
+      padding-left: 15px;
+    }
+    .toc li {
+      margin-bottom: 5px;
+    }
+    .toc a {
+      color: #2c7be5;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .toc a:hover { text-decoration: underline; }
+
     p {
       font-weight: 600;
       margin-bottom: 1.5em;
       font-size: 17px;
       color: #333;
-    }
-    .big-bold {
-      font-size: 26px;
-      font-weight: 900;
-      color: #1a5ab3;
-      margin: 30px 0;
-      display: block;
-      line-height: 1.4;
     }
     h2 {
       background: linear-gradient(to right, #f8f9fa, #ffffff);
@@ -185,13 +248,13 @@
     }
     .ad-slot {
       background: #f0f0f0;
-      border: 1px solid #ddd;
-      min-height: 150px;
+      border: 2px dashed #bbb;
+      min-height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #aaa;
-      font-size: 13px;
+      color: #888;
+      font-size: 14px;
       text-align: center;
       border-radius: 8px;
     }
@@ -213,6 +276,24 @@
       margin-bottom: 10px;
       font-weight: 700;
     }
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #2c7be5;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 999;
+      font-size: 20px;
+    }
     footer {
       text-align: center;
       padding: 60px 20px;
@@ -221,10 +302,12 @@
     }
     @media (max-width: 1200px) {
       .sidebar-right { display: none; }
+      nav.global-nav ul { flex-wrap: wrap; }
+      nav.global-nav li { flex: none; width: 50%; }
     }
   </style>
 </head>
-<body>
+<body id="top">
 
 <header>
   <div class="header-logo">
@@ -235,6 +318,20 @@
     <p>統合版マイクラ攻略・アドオン開発の最前線</p>
   </div>
 </header>
+
+<nav class="global-nav">
+  <ul>
+    <li><a href="index.html">ホーム</a></li>
+    <li><a href="#toc">アイテム攻略</a></li>
+    <li><a href="rpg-project.html">RPGプロジェクト</a></li>
+    <li><a href="#">スクリプト解説</a></li>
+    <li><a href="#">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">ホーム</a> ＞ <a href="#">統合版アドオン攻略</a> ＞ <strong>カスタムアイテムの作り方</strong>
+</div>
 
 <div class="container">
   <aside class="sidebar-left">
@@ -248,41 +345,39 @@
     <div class="sidebar-box">
       <div class="sidebar-title">⚡ 統合版 最新ニュース</div>
       <ul class="update-list">
-        <li><span class="ver-tag new">1.21.30</span>最新アプデ配布開始！バンドルが正式実装。</li>
-        <li><span class="ver-tag">1.21.20</span>試験的機能に「ペールガーデン」データ追加！</li>
-        <li><span class="ver-tag fix">修正</span>Script APIの挙動不具合が一部解消。</li>
-        <li><span class="ver-tag tips">重要</span>Blockbench 4.11リリース。動作がより軽量に。</li>
-        <li><span class="ver-tag new">注目</span>マーケットプレイスに新無料コンテンツ登場。</li>
-        <li><span class="ver-tag fix">修正</span>マルチサーバーでのラグ問題が改善されました。</li>
-        <li><span class="ver-tag tips">重要</span>Realms Plusのラインナップが更新。</li>
-        <li><span class="ver-tag new">速報</span>次期大型アプデ「Tricky Trials」詳細判明。</li>
+        <li><span class="ver-tag new">1.20.7x</span>統合版アップデート！ボルトの挙動が修正。</li>
+        <li><span class="ver-tag">1.21</span>試験的機能に新構造物「トライアルチャンバー」追加！</li>
+        <li><span class="ver-tag fix">修正</span>Script APIにおけるUI表示バグが解消されました。</li>
+        <li><span class="ver-tag tips">重要</span>Blockbench 4.10公開。アドオン書き出しが高速化。</li>
       </ul>
     </div>
 
     <div class="sidebar-box">
-      <div class="sidebar-title">🐥 ソランのマイクラ豆知識</div>
+      <div class="sidebar-title">🐥 マイクラ豆知識（TIPS）</div>
       <ul class="update-list">
-        <li>・ヒヨコは種をあげると成長が早まる！水に浮く性質あり。</li>
+        <li>・ヒヨコは種をあげると成長が早まる！水に浮くので溺れないよ。</li>
         <li>・看板に染料を使うと文字の色が変化。さらに輝くイカスミで発光！</li>
-        <li>・ハサミを使うと、雪だるまのかぼちゃを脱がせられる。</li>
-        <li>・統合版では焚き火の上で食料を4つまで同時に焼ける！</li>
-        <li>・幸運のツルハシで「泥」を壊しても粘土は増えない。</li>
-        <li>・ハチの巣の下で焚き火をたくと、ハチに怒られず採取可能。</li>
-        <li>・統合版は看板を設置した後からでも文字を書き換えられる。</li>
-        <li>・雷が落ちたクリーパーは爆発力が大幅アップ！注意。</li>
-        <li>・クワを使って「葉っぱ」を壊すと一瞬で消える。整地に便利。</li>
-        <li>・ネザーでリスポーンアンカーを使えば復活地点を設定できる。</li>
+        <li>・ハサミを使うと、雪だるま（スノーゴーレム）のかぼちゃを脱がせられる。</li>
+        <li>・統合版では焚き火の上で食料を4つまで同時に焼ける！燃料いらず。</li>
       </ul>
-    </div>
-
-    <div class="sidebar-box">
-      <div class="ad-slot">現状はありません。</div>
     </div>
   </aside>
 
   <main>
     <div class="title-image" style="text-align:center; margin-bottom: 40px;">
       <img src="SORANNCRAFT_title.png" style="max-width:100%; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));">
+    </div>
+
+    <div class="toc" id="toc">
+      <span class="toc-title">この記事の目次</span>
+      <ul>
+        <li><a href="#section1">1. カスタムアイテムのテクスチャ作成</a></li>
+        <li><a href="#step1">手順1：Blockbenchの初期設定</a></li>
+        <li><a href="#step2">手順2：アイテムウィザードの導入</a></li>
+        <li><a href="#step3">手順3：アイテムの基本定義</a></li>
+        <li><a href="#step4">手順4：IDとステータスの設定</a></li>
+        <li><a href="#step5">手順5：テクスチャの描き込み</a></li>
+      </ul>
     </div>
 
     <p>どうも！Sorann「小６」です！</p>
@@ -296,38 +391,53 @@
     <p>知れば知るほど面白いのがマイクラのアドオン制作です。小学生の僕でも、正しい知識があればプロ並みのアイテムを作ることができます。</p>
     <p>「やり方を忘れちゃった」「このコードどう書くんだっけ？」という時のために、この攻略Wikiをフル活用してくださいね！</p>
 
-    <h2>【徹底攻略】カスタムアイテムのテクスチャ作成</h2>
-    <p>カスタムアイテム作成の第一歩は、見た目（テクスチャ）を決めることです。ここでは世界中の開発者が愛用する<strong>『Blockbench』</strong>を使った、失敗しない作成手順を詳しく解説します。</p>
-
-    <h3>手順1：Blockbenchの初期設定</h3>
-    <p>Blockbenchをインストールしたら、まず「File > Preferences > Settings」から言語を「Japanese」に変更しましょう。これにより、専門用語の誤解を防ぎ、作業効率が3倍以上アップします。</p>
-    <div class="image-box">
-      <img src="Blockbench言語日本語に.png" alt="Blockbench設定画面">
+    <div class="info-box">
+      <span style="font-size: 20px; font-weight: 900; color: #d35400;">💡 準備しておくべきもの</span><br>
+      <p style="font-size: 15px; margin-top: 10px;">
+        Minecraft Launcherは必ず最新版にしておきましょう。最新のアプデ情報やエンジンの変更をいち早くキャッチできます。
+      </p>
     </div>
 
-    <h3>手順2：アイテムウィザードの活用</h3>
-    <p>初心者が陥りやすい罠は、JSONファイルを1から手書きすることです。これはミスが発生しやすく非常に大変です。「プラグイン」から<strong>「Minecraft Item Wizard」</strong>を導入しましょう。これを使えば、必要なファイルをツールが自動でセットアップしてくれます。</p>
+    <h2 id="section1">【徹底攻略】カスタムアイテムのテクスチャ作成</h2>
+    <p>カスタムアイテムを「最も簡単」かつ「高品質」に作る方法は、無料ソフト<strong>『Blockbench』</strong>を使うことです。これは公式でも推奨されている神ツールです。</p>
+
+    <h3 id="step1">手順1：Blockbenchの初期設定（日本語化）</h3>
+    <p>まずはツールを使いやすくしましょう。英語のままだと迷いやすいので、最初に日本語設定を行います。</p>
+    <div class="image-box">
+      <img src="Blockbench言語日本語に.png" alt="Blockbench設定画面">
+      <p style="font-size: 13px; color: #666; margin-top: 10px;">File ＞ Preferences ＞ Settings の順に開き、Languageを「Japanese」に変更します。</p>
+    </div>
+    <p>「Restart now」を押して再起動すれば、メニューが日本語になり、操作ミスが激減しますよ！</p>
+
+    <h3 id="step2">手順2：アイテムウィザードの導入</h3>
     <div class="image-box">
       <img src="blockbench言語設定.png" alt="プラグイン導入">
     </div>
+    <p>「プラグイン」メニューから<strong>「Minecraft Item Wizard」</strong>を検索してインストールします。これを使うだけで、難しい設定ファイルを自動で生成してくれます。</p>
 
-    <h3>手順3：基本設定とID指定</h3>
-    <p>ウィザードを起動し、「Create a New Item」を選択します。ここで「表示名」と「アイテムID」を決めます。IDは `(作成者名):(アイテム名)` の形式にするのが業界のルールです。例えば `sorann:magic_wand` のように設定することで、他のアドオンとの競合を防ぐことができます。</p>
+    <h3 id="step3">手順3：アイテムの基本定義</h3>
+    <p>ウィザードを起動したら、「Create an Item!」をクリック。まずはベースとなるアイテムを選びますが、今回は「鉄インゴット」を例に進めます。</p>
     <div class="image-box">
       <img src="アイテム作成1.png">
     </div>
 
-    <h3>手順4：コンポーネントのカスタマイズ</h3>
-    <p>次に、アイテムの「能力」を設定します。スタック数（持てる数）を1にすればレア装備風に、64にすれば素材アイテムになります。「食べられるか」「武器として使うか」などのチェックボックスを埋めるだけで、内部コードが自動生成されます。</p>
+    <h3 id="step4">手順4：IDとステータスの設定</h3>
+    <p>ここが一番重要です！プロ並みのアイテムにするためのポイントをまとめました。</p>
     <div class="image-box">
-      <img src="アイテム作成2.png">
+      <img src="アイテム作成2png">
     </div>
+    <ul class="check-list">
+      <li><strong>表示名：</strong> ゲーム内で実際に見える名前。日本語もOK！</li>
+      <li><strong>アイテムID：</strong> `sorann:super_sword` のように、自分の名前（ネームスペース）を最初に入れるのがプロのコツです。</li>
+      <li><strong>スタック数：</strong> 1個しか持てないレア武器にするか、64個持てる素材にするか選べます。</li>
+    </ul>
+    <p>「食べられるか」「攻撃力は？」などの設定が終わったら、最後はフォルダに書き出しましょう（Export）。</p>
 
-    <h3>手順5：ピクセルアートの作成とエクスポート</h3>
-    <p>最後は「Paint」タブでドット絵を描きます。16x16ピクセルが標準ですが、32x32にすればより高精細なアイテムも作成可能です。描き終えたら「Export」ボタンを押し、マインクラフトの `development_behavior_packs` フォルダに保存すれば完了です！</p>
+    <h3 id="step5">手順5：テクスチャの描き込み</h3>
     <div class="image-box">
       <img src="アイテム作成3.png">
     </div>
+    <p>書き出すと、真っ白なテクスチャかベースの絵が出てきます。ここで自分好みの色や形をドット絵で描いていきます。ワールドに反映された時の感動は最高ですよ！</p>
 
     <div style="background:#eef; padding:20px; border-radius:10px; border: 1px solid #ccd;">
       <p style="text-align: center; margin-bottom: 0;">これにて SORANNCRAFT のカスタムアイテム講座を終わります！(⌒∇⌒)<br>次はもっと高度な「スクリプトAPI」についても解説していくのでお楽しみに！</p>
@@ -360,10 +470,12 @@
     </div>
     
     <div class="sidebar-box">
-      <div class="ad-slot" style="min-height: 250px;">現状はありません。</div>
+      <div class="ad-slot" style="min-height: 200px; background: #eee;">現状はありません。</div>
     </div>
   </aside>
 </div>
+
+<a href="#top" class="back-to-top">▲</a>
 
 <footer>
   <p>© 2026 SORANNCRAFT - Project RPG & Minecraft Creative Guide</p>
