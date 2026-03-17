@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>【マイクラ統合版】カスタムアイテムの作り方徹底解説！Blockbench活用術｜SORANNCRAFT</title>
-  <meta name="description" content="マインクラフト統合版（BE/PE）で自分だけのカスタムアイテムを作成する方法を、小学生開発者のSorannがプロ並みに詳しく解説！初心者でもBlockbenchを使えば簡単にアドオン制作が可能です。">
+  <meta name="description" content="マインクラフト統合版（BE/PE）で自分だけのカスタムアイテムを作成する方法を、現役小学生開発者のSorannがプロ並みに詳しく解説！小学六年生でもBlockbenchを使えば簡単にアドオン制作が可能です。">
+  <meta name="keywords" content="マイクラ統合版カスタムアイテム作り方, マイクラ統合版, マイクラアドオン作り方, マイクラアイテム作成, マイクラ統合版アドオン作成簡単, マイクラBEアドオン, マイクラPEアドオン, 統合版マイクラ開発, Blockbench使い方, マイクラ自作アイテム, マイクラコマンド, マイクラ攻略, マイクラ小学生開発者, マイクラRPG作り方, SORANNCRAFT, ソランクラフト, 統合版リソースパック作り方, 統合版ビヘイビアパック作り方, マイクラJavaScript, マイクラScriptAPI, マイクラモデリング, マイクラドット絵作成, マイクラテクスチャ作り方, 小学生プログラミング, マイクラ自作武器">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -45,6 +46,20 @@
       letter-spacing: 2px;
       font-weight: 900;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    /* 「小学六年生」を太く分かりやすくするバッジ */
+    .grade-badge {
+      background: #ff4757;
+      color: white;
+      font-size: 18px;
+      padding: 5px 15px;
+      border-radius: 8px;
+      font-weight: 900;
+      text-shadow: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     .header-text p {
       margin: 0;
@@ -314,7 +329,7 @@
     <img src="Sorann右上表示.png" alt="SorannLogo">
   </div>
   <div class="header-text">
-    <h1>SORANNCRAFT</h1>
+    <h1>SORANNCRAFT <span class="grade-badge">小学六年生</span></h1>
     <p>統合版マイクラ攻略・アドオン開発の最前線</p>
   </div>
 </header>
@@ -380,7 +395,7 @@
       </ul>
     </div>
 
-    <p>どうも！Sorann「小６」です！</p>
+    <p>どうも！SORANNCRAFT管理人のSorannです！僕は現在、**小学六年生**ですが、毎日マインクラフトのアドオン開発に熱中しています！</p>
     <p>マインクラフトの世界を自分の手で作り変えたいと思ったことはありませんか？</p>
     <ul class="check-list">
       <li>オリジナルの強力な武器（カスタムアイテム）を作ってみたい！</li>
@@ -388,59 +403,59 @@
       <li>プログラミングの力で、世界に一つだけのRPGを作りたい！</li>
     </ul>
 
-    <p>知れば知るほど面白いのがマイクラのアドオン制作です。小学生の僕でも、正しい知識があればプロ並みのアイテムを作ることができます。</p>
-    <p>「やり方を忘れちゃった」「このコードどう書くんだっけ？」という時のために、この攻略Wikiをフル活用してくださいね！</p>
+    <p>知れば知るほど面白いのがマイクラのアドオン制作です。**小学六年生の僕でも**、正しいツールを使い、正しい手順を知れば、プロ並みのクオリティでアイテムを作ることができます。このサイトでは、僕が実際に開発して学んだノウハウを、同じ小学生や初心者の方にも分かりやすく解説しています！</p>
+    <p>「やり方を忘れちゃった」「このコードの書き方は？」という時のために、この攻略Wikiをフル活用してくださいね！</p>
 
     <div class="info-box">
       <span style="font-size: 20px; font-weight: 900; color: #d35400;">💡 準備しておくべきもの</span><br>
       <p style="font-size: 15px; margin-top: 10px;">
-        Minecraft Launcherは必ず最新版にしておきましょう。最新のアプデ情報やエンジンの変更をいち早くキャッチできます。
+        Minecraft Launcherは必ず最新版にしておきましょう。最新のアプデ情報やエンジンの変更をいち早くキャッチして、自分のアドオンに取り入れるのが開発のコツです！
       </p>
     </div>
 
     <h2 id="section1">【徹底攻略】カスタムアイテムのテクスチャ作成</h2>
-    <p>カスタムアイテムを「最も簡単」かつ「高品質」に作る方法は、無料ソフト<strong>『Blockbench』</strong>を使うことです。これは公式でも推奨されている神ツールです。</p>
+    <p>カスタムアイテムを「最も簡単」かつ「高品質」に作る方法は、無料ソフト<strong>『Blockbench』</strong>を使うことです。これは公式でも推奨されている神ツールで、僕も愛用しています。</p>
 
     <h3 id="step1">手順1：Blockbenchの初期設定（日本語化）</h3>
-    <p>まずはツールを使いやすくしましょう。英語のままだと迷いやすいので、最初に日本語設定を行います。</p>
+    <p>まずはツールを使いやすくしましょう。英語のままだと操作が難しいので、最初に日本語設定を行います。</p>
     <div class="image-box">
       <img src="Blockbench言語日本語に.png" alt="Blockbench設定画面">
       <p style="font-size: 13px; color: #666; margin-top: 10px;">File ＞ Preferences ＞ Settings の順に開き、Languageを「Japanese」に変更します。</p>
     </div>
-    <p>「Restart now」を押して再起動すれば、メニューが日本語になり、操作ミスが激減しますよ！</p>
+    <p>設定後に「Restart now」を押して再起動すれば、メニューがすべて日本語になり、操作ミスがグッと減りますよ！</p>
 
     <h3 id="step2">手順2：アイテムウィザードの導入</h3>
     <div class="image-box">
       <img src="blockbench言語設定.png" alt="プラグイン導入">
     </div>
-    <p>「プラグイン」メニューから<strong>「Minecraft Item Wizard」</strong>を検索してインストールします。これを使うだけで、難しい設定ファイルを自動で生成してくれます。</p>
+    <p>「プラグイン」メニューから<strong>「Minecraft Item Wizard」</strong>を検索してインストールします。これを使えば、アドオンに必要な難しいJSONファイルを自動で生成してくれるので、初心者でも安心です！</p>
 
     <h3 id="step3">手順3：アイテムの基本定義</h3>
-    <p>ウィザードを起動したら、「Create an Item!」をクリック。まずはベースとなるアイテムを選びますが、今回は「鉄インゴット」を例に進めます。</p>
+    <p>ウィザードを起動したら、「Create an Item!」をクリック。まずはベースとなるアイテムを選びますが、今回は「鉄インゴット」を例に進めていきます。</p>
     <div class="image-box">
       <img src="アイテム作成1.png">
     </div>
 
     <h3 id="step4">手順4：IDとステータスの設定</h3>
-    <p>ここが一番重要です！プロ並みのアイテムにするためのポイントをまとめました。</p>
+    <p>ここが開発の腕の見せ所です！アイテムに魂を吹き込みましょう。</p>
     <div class="image-box">
       <img src="アイテム作成2png">
     </div>
     <ul class="check-list">
-      <li><strong>表示名：</strong> ゲーム内で実際に見える名前。日本語もOK！</li>
-      <li><strong>アイテムID：</strong> `sorann:super_sword` のように、自分の名前（ネームスペース）を最初に入れるのがプロのコツです。</li>
-      <li><strong>スタック数：</strong> 1個しか持てないレア武器にするか、64個持てる素材にするか選べます。</li>
+      <li><strong>表示名：</strong> ゲーム内で実際に見える名前。かっこいい名前を付けましょう！日本語も使えます。</li>
+      <li><strong>アイテムID：</strong> `sorann:super_sword` のように、自分の名前（ネームスペース）を最初に入れるのが、他のアドオンと混ざらないためのプロのコツです。</li>
+      <li><strong>スタック数：</strong> 1個しか持てないレア武器にするか、64個持てる素材にするか、用途に合わせて選べます。</li>
     </ul>
-    <p>「食べられるか」「攻撃力は？」などの設定が終わったら、最後はフォルダに書き出しましょう（Export）。</p>
+    <p>「食べられるか」「攻撃力は？」などのステータス設定が終わったら、最後はフォルダに書き出しましょう（Export）。</p>
 
     <h3 id="step5">手順5：テクスチャの描き込み</h3>
     <div class="image-box">
       <img src="アイテム作成3.png">
     </div>
-    <p>書き出すと、真っ白なテクスチャかベースの絵が出てきます。ここで自分好みの色や形をドット絵で描いていきます。ワールドに反映された時の感動は最高ですよ！</p>
+    <p>書き出すと、ベースとなる絵が出てきます。ここからは自分好みの色や形をドット絵で描いていきます。自分が描いた絵がマインクラフトのワールドに反映された時の感動は、何度味わっても最高ですよ！</p>
 
     <div style="background:#eef; padding:20px; border-radius:10px; border: 1px solid #ccd;">
-      <p style="text-align: center; margin-bottom: 0;">これにて SORANNCRAFT のカスタムアイテム講座を終わります！(⌒∇⌒)<br>次はもっと高度な「スクリプトAPI」についても解説していくのでお楽しみに！</p>
+      <p style="text-align: center; margin-bottom: 0;">これにて **小学六年生の開発者Sorann** によるカスタムアイテム講座を終わります！(⌒∇⌒)<br>次はもっと高度な「スクリプトAPI」についても解説していくので、一緒に最強のアドオンを作りましょう！</p>
     </div>
   </main>
 
@@ -478,7 +493,7 @@
 <a href="#top" class="back-to-top">▲</a>
 
 <footer>
-  <p>© 2026 SORANNCRAFT - Project RPG & Minecraft Creative Guide</p>
+  <p>© 2026 SORANNCRAFT - Project RPG & Minecraft Creative Guide (Created by Sorann - Grade 6)</p>
 </footer>
 
 </body>
