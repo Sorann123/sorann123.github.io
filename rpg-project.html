@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>【最新】PROJECT: RPG 開発状況・データアーカイブ｜SORANNCRAFT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="マイクラRPG, マイクラ統合版アドオン, マイクラBEアドオン, マイクラPEアドオン, 統合版マイクラ攻略, アドオン作り方, カスタムアイテム, 独自モブ, レイドボス, 不死帝ソウラー, 凍土の災厄グラシヴエイ, 炎獄の魔獣焔牙イグニス, 涷牙剣, インフェルノソード, 氷縛の使者の剣, 勇者の剣, 氷の鎧, 極寒の守護石, フロストライト鉱石, 紅炎の鎧, 灼熱のヘルム, 焦炎剣, 紅炎の盾, 凍土の守護者の指輪, 氷晶の首飾り, 虚無の腕輪, 英雄の紋章, 経験値結晶, 転職ブロック, マイクラ職業, モグラン族, モグモグピッケル, ミミック, 宝箱怪獣, プルルン, オコリンボウ, ワンダリングデッド, 錬金骸, ヴォイドリーパー, 虚無の騎士, シャドウケープ, フロストヴァルゼオン, スクリプトAPI, Blockbench, マイクラモデリング, マイクラプログラミング, 小学生開発者, SORANNCRAFT, ソランクラフト, マイクラ配布ワールド, マイクラサバイバル">
   <style>
     body {
       font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
@@ -13,6 +14,7 @@
       color: #333;
       line-height: 1.8;
       scroll-behavior: smooth;
+      font-size: clamp(14px, 1.5vw, 17px);
     }
     header {
       background: linear-gradient(90deg, #1a5ab3 0%, #2c7be5 100%);
@@ -21,6 +23,7 @@
       display: flex;
       align-items: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
     }
     .header-logo {
       background: white;
@@ -30,8 +33,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
-      height: 60px;
+      width: clamp(50px, 8vw, 60px);
+      height: clamp(50px, 8vw, 60px);
     }
     .header-logo img { max-width: 100%; max-height: 100%; }
     
@@ -48,16 +51,17 @@
       padding: 0;
       list-style: none;
       display: flex;
+      flex-wrap: wrap;
     }
-    nav.global-nav li { flex: 1; }
+    nav.global-nav li { flex: 1; min-width: 100px; }
     nav.global-nav a {
       display: block;
       color: white;
       text-decoration: none;
       text-align: center;
-      padding: 12px 0;
+      padding: 12px 5px;
       font-weight: bold;
-      font-size: 15px;
+      font-size: clamp(12px, 1.5vw, 15px);
       border-right: 1px solid rgba(255,255,255,0.1);
       transition: background 0.3s;
     }
@@ -67,7 +71,7 @@
       max-width: 1600px;
       margin: 10px auto;
       padding: 0 30px;
-      font-size: 13px;
+      font-size: clamp(11px, 1.2vw, 13px);
       color: #666;
     }
     .breadcrumb a { color: #2c7be5; text-decoration: none; }
@@ -76,6 +80,8 @@
       max-width: 1600px;
       margin: 0 auto;
       display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
     .sidebar {
       width: 320px;
@@ -83,6 +89,7 @@
       padding: 30px 20px;
       border-right: 1px solid #e1e4e8;
       flex-shrink: 0;
+      box-sizing: border-box;
     }
     .sidebar-box {
       background: white;
@@ -102,10 +109,10 @@
     }
 
     main {
-      flex-grow: 1;
+      flex: 1;
       background: white;
-      padding: 40px 50px;
-      min-width: 0;
+      padding: clamp(20px, 5%, 40px) clamp(15px, 5%, 50px);
+      min-width: 300px;
     }
     
     .toc {
@@ -117,7 +124,7 @@
     }
     .toc-title {
       font-weight: 900;
-      font-size: 18px;
+      font-size: clamp(16px, 2vw, 18px);
       margin-bottom: 10px;
       display: block;
       color: #1a5ab3;
@@ -125,13 +132,13 @@
       padding-bottom: 5px;
     }
     .toc ul { list-style: none; padding-left: 15px; }
-    .toc a { color: #2c7be5; text-decoration: none; font-weight: bold; }
+    .toc a { color: #2c7be5; text-decoration: none; font-weight: bold; font-size: clamp(13px, 1.5vw, 15px); }
 
     .status-card {
       background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
       border: 2px solid #ff4757;
       border-radius: 15px;
-      padding: 30px;
+      padding: clamp(15px, 4vw, 30px);
       text-align: center;
       margin-bottom: 40px;
     }
@@ -139,7 +146,7 @@
       background: #eee;
       border-radius: 20px;
       height: 25px;
-      width: 80%;
+      width: 90%;
       margin: 20px auto;
       overflow: hidden;
     }
@@ -152,13 +159,18 @@
       justify-content: center;
       color: white;
       font-weight: bold;
+      font-size: 14px;
     }
 
+    .data-table-wrapper {
+      overflow-x: auto;
+    }
     .data-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
       font-weight: 600;
+      min-width: 500px;
     }
     .data-table th {
       background: #f1f8ff;
@@ -178,13 +190,13 @@
       background: #f1f8ff;
       padding: 15px 20px;
       margin-top: 50px;
-      font-size: 24px;
+      font-size: clamp(20px, 3vw, 24px);
       font-weight: 900;
     }
     
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       margin: 20px 0;
     }
@@ -196,7 +208,7 @@
       text-align: center;
     }
     .counter-num {
-      font-size: 36px;
+      font-size: clamp(28px, 4vw, 36px);
       font-weight: 900;
       color: #ffc107;
       display: block;
@@ -211,7 +223,7 @@
       margin: 20px 0;
     }
     .item-preview-box img {
-      max-width: 150px;
+      max-width: clamp(100px, 20vw, 150px);
       height: auto;
       filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
     }
@@ -220,6 +232,7 @@
       padding: 10px 0;
       border-bottom: 1px solid #eee;
       font-weight: bold;
+      font-size: clamp(13px, 1.5vw, 15px);
     }
     .ver-tag {
       background: #4caf50;
@@ -249,9 +262,17 @@
     }
 
     footer { text-align: center; padding: 40px; background: #333; color: white; }
+
     @media (max-width: 1200px) {
+      nav.global-nav li { width: 33.33%; }
+    }
+
+    @media (max-width: 768px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e1e4e8; min-height: auto; }
       nav.global-nav li { width: 50%; }
-      nav.global-nav ul { flex-wrap: wrap; }
+      header { justify-content: center; text-align: center; }
+      .header-logo { margin: 0 0 10px 0; }
     }
   </style>
 </head>
@@ -262,8 +283,8 @@
     <img src="Sorann右上表示.png" alt="Logo">
   </div>
   <div class="header-text">
-    <h1 style="margin:0; font-size:32px;">SORANNCRAFT</h1>
-    <p style="margin:0; font-size:18px;">PROJECT: RPG - 開発速報 & データベース</p>
+    <h1 style="margin:0; font-size:clamp(24px, 5vw, 32px);">SORANNCRAFT</h1>
+    <p style="margin:0; font-size:clamp(14px, 3vw, 18px);">PROJECT: RPG - 開発速報 & データベース</p>
   </div>
 </header>
 
@@ -304,8 +325,8 @@
 
   <main>
     <div class="status-card">
-      <span style="font-size: 28px; font-weight: 900; color: #ff4757; display:block; margin-bottom:10px;">プロジェクト進捗状況：最終フェーズ</span>
-      <p style="font-size: 16px; font-weight: bold; color: #555;">
+      <span style="font-size: clamp(20px, 4vw, 28px); font-weight: 900; color: #ff4757; display:block; margin-bottom:10px;">プロジェクト進捗状況：最終フェーズ</span>
+      <p style="font-size: clamp(14px, 2vw, 16px); font-weight: bold; color: #555;">
         全100種類以上のカスタムアイテムと、20種類を超える独自モブの実装が完了！<br>
         現在はボス戦のスクリプト調整と、各エリアのバランス調整を行っています。
       </p>
@@ -341,18 +362,20 @@
     </div>
 
     <h2 id="mob">👾 独自モブ・ボス図鑑（抜粋）</h2>
-    <table class="data-table">
-      <thead>
-        <tr><th>名称</th><th>ランク</th><th>特徴</th></tr>
-      </thead>
-      <tbody>
-        <tr><td style="color:#ff4757;">不死帝・ソウラー</td><td class="rarity-legend">WORLD BOSS</td><td>最強の不死者。多段階のフェーズ移行を持つ。</td></tr>
-        <tr><td style="color:#2196f3;">凍土の災厄・グラシヴエイ</td><td class="rarity-epic">AREA BOSS</td><td>周囲を凍結させる特殊デバフを使用。</td></tr>
-        <tr><td style="color:#9c27b0;">炎獄の魔獣・焔牙イグニス</td><td class="rarity-epic">AREA BOSS</td><td>高威力の範囲炎攻撃を繰り出す。</td></tr>
-        <tr><td style="color:#777;">ワンダリングデッド</td><td class="rarity-common">NORMAL</td><td>夜間に徘徊する強力なゾンビ。</td></tr>
-        <tr><td style="color:#666;">錬金骸</td><td class="rarity-rare">ELITE</td><td>倒すと稀に錬金素材をドロップ。</td></tr>
-      </tbody>
-    </table>
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>名称</th><th>ランク</th><th>特徴</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#ff4757;">不死帝・ソウラー</td><td class="rarity-legend">WORLD BOSS</td><td>最強の不死者。多段階のフェーズ移行を持つ。</td></tr>
+          <tr><td style="color:#2196f3;">凍土の災厄・グラシヴエイ</td><td class="rarity-epic">AREA BOSS</td><td>周囲を凍結させる特殊デバフを使用。</td></tr>
+          <tr><td style="color:#9c27b0;">炎獄の魔獣・焔牙イグニス</td><td class="rarity-epic">AREA BOSS</td><td>高威力の範囲炎攻撃を繰り出す。</td></tr>
+          <tr><td style="color:#777;">ワンダリングデッド</td><td class="rarity-common">NORMAL</td><td>夜間に徘徊する強力なゾンビ。</td></tr>
+          <tr><td style="color:#666;">錬金骸</td><td class="rarity-rare">ELITE</td><td>倒すと稀に錬金素材をドロップ。</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 id="db">⚔️ 装備・アクセサリーデータベース</h2>
     <p>Blockbenchをフル活用した、本作独自の装備品リストです。</p>
@@ -362,17 +385,19 @@
       <p style="font-weight: bold; margin-top: 10px;">ほとんどは独自アイテムです！</p>
     </div>
 
-    <table class="data-table">
-      <thead>
-        <tr><th>カテゴリー</th><th>主なアイテム</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>伝説級武器</td><td>涷牙剣、インフェルノソード、氷縛の使者の剣、勇者の剣</td></tr>
-        <tr><td>極寒装備</td><td>氷の鎧シリーズ、極寒の守護石、フロストライト鉱石</td></tr>
-        <tr><td>灼熱装備</td><td>紅炎の鎧、灼熱のヘルム、焦炎剣、紅炎の盾</td></tr>
-        <tr><td>アクセサリ</td><td>凍土の守護者の指輪、氷晶の首飾り、虚無の腕輪、英雄の紋章</td></tr>
-      </tbody>
-    </table>
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>カテゴリー</th><th>主なアイテム</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>伝説級武器</td><td>涷牙剣、インフェルノソード、氷縛の使者の剣、勇者の剣</td></tr>
+          <tr><td>極寒装備</td><td>氷の鎧シリーズ、極寒の守護石、フロストライト鉱石</td></tr>
+          <tr><td>灼熱装備</td><td>紅炎の鎧、灼熱のヘルム、焦炎剣、紅炎の盾</td></tr>
+          <tr><td>アクセサリ</td><td>凍土の守護者の指輪、氷晶の首飾り、虚無の腕輪、英雄の紋章</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 id="log">🗓️ 最新開発ログ（超増量版）</h2>
     <div class="log-item"><span class="ver-tag">2026/03/16</span> ボス「フロストヴァルゼオン」の攻撃パターンを3種追加。</div>
@@ -384,9 +409,9 @@
     <div class="log-item"><span class="ver-tag">2026/03/05</span> ミミック（宝箱怪獣）の挙動エラーを完全に修正。</div>
     <div class="log-item"><span class="ver-tag">2026/03/01</span> 転職ブロックの実装。全12種類の職業へチェンジ可能に。</div>
 
-    <div style="background:#2c7be5; color:white; padding:30px; border-radius:15px; margin-top:40px; text-align:center;">
-      <p style="font-size:22px; font-weight:900; margin:0;">「冒険の準備はいいですか？」</p>
-      <p style="margin:10px 0;">これまでの全技術を注ぎ込んだ、Sorann史上最高のRPGを間もなく公開します。</p>
+    <div style="background:#2c7be5; color:white; padding:clamp(20px, 5vw, 30px); border-radius:15px; margin-top:40px; text-align:center;">
+      <p style="font-size:clamp(18px, 4vw, 22px); font-weight:900; margin:0;">「冒険の準備はいいですか？」</p>
+      <p style="margin:10px 0; font-size: clamp(13px, 1.5vw, 15px);">これまでの全技術を注ぎ込んだ、Sorann史上最高のRPGを間もなく公開します。</p>
     </div>
   </main>
 </div>
