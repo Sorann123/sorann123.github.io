@@ -4,8 +4,8 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6126950806811993" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <title>【マイクラ統合版】カスタムアイテムの作り方徹底解説！Blockbench活用術｜SORANNCRAFT</title>
-  <meta name="description" content="マインクラフト統合版（BE/PE）で自分だけのカスタムアイテムを作成する方法を、現役小学生開発者のSorannがプロ並みに詳しく解説！小学六年生でもBlockbenchを使えば簡単にアドオン制作が可能です。">
-  <meta name="keywords" content="マイクラ統合版カスタムアイテム作り方, マイクラ統合版, マイクラアドオン作り方, マイクラアイテム作成, マイクラ統合版アドオン作成簡単, マイクラBEアドオン, マイクラPEアドオン, 統合版マイクラ開発, Blockbench使い方, マイクラ自作アイテム, マイクラコマンド, マイクラ攻略, マイクラ小学生開発者, マイクラRPG作り方, SORANNCRAFT, ソランクラフト, 統合版リソースパック作り方, 統合版ビヘイビアパック作り方, マイクラJavaScript, マイクラScriptAPI, マイクラモデリング, マイクラドット絵作成, マイクラテクスチャ作り方, 小学生プログラミング, マイクラ自作武器">
+  <meta name="description" content="マインクラフト統合版（BE/PE）で自分だけのカスタムアイテムを作成する方法を、現役小学生開発者のSorannがプロ並みに詳しく解説！中学一年生でもBlockbenchを使えば簡単にアドオン制作が可能です。">
+  <meta name="keywords" content="マイクラ統合版カスタムアイテム作り方, Minecraft Bedrock Edition Custom Items, マイクラアドオン作り方, Minecraft Add-on Tutorial, マイクラアイテム作成, How to make Minecraft Addons, マイクラ統合版アドオン作成簡単, Minecraft BE Addon Guide, マイクラPEアドオン, Minecraft PE Modding, 統合版マイクラ開発, Blockbench使い方, Blockbench Tutorial, マイクラ自作アイテム, Custom Sword Minecraft, マイクラコマンド, Minecraft Commands, マイクラ攻略, マイクラ小学生開発者, Elementary School Coder, マイクラRPG作り方, Minecraft RPG Maker, SORANNCRAFT, ソランクラフト, 統合版リソースパック作り方, Resource Pack Tutorial, 統合版ビヘイビアパック作り方, Behavior Pack Guide, マイクラJavaScript, Minecraft Script API, マイクラモデリング, 3D Modeling Minecraft, マイクラドット絵作成, Pixel Art Minecraft, マイクラテクスチャ作り方, Texture Painting, 小学生プログラミング, Kids Coding, マイクラ自作武器, Custom Weapons BE, manifest.json, items folder, minecraft:item, components, custom_components, formats 1.20.80, worldInitialize, itemComponentRegistry, onHitEntity, particles, mg:abyss_rupture, Netherite, Durability, Minecraft UI, JSON editing, VSCode Minecraft, Alchemy Armament, Energy Core, Reporo Village, Solar Emperor, 不死帝ソウラー, Minecraft EarthSMP, Towny, Nation, Masame, Itame, Woodworking, Japanese Developer, Bedrock Scripting, TypeScript Minecraft, Minecraft SDK, Molang, Animation Controllers, Render Controllers, Geometry, UV Mapping, Minecraft Marketplace, Add-on Creator, Game Design, JRPG Style, Dragon Quest Music, Magic Abyss Gravity, Web Monetization, GitHub Pages, AdSense for Games, Minecraft Community, Bedrock Dev, Entity Component System, Event Driven Programming, Logic Design, Visual Studio Code, Minecraft Preview, Beta API, Stability, Scalability, Optimization, Low Poly Modeling, Texturing, Sorann, 6th Grade, Elementary School, Creative Writing, Aoi and Toya, Swimming Club Story, Sports Narrative, Minecraft Storytelling, Technical Writing">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -26,6 +26,7 @@
       align-items: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       flex-wrap: wrap;
+      position: relative;
     }
     .header-logo {
       background: white;
@@ -69,6 +70,42 @@
       font-size: clamp(14px, 2vw, 18px);
       font-weight: bold;
       color: #e0eaff;
+    }
+    .header-nav-buttons {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+      margin-right: 80px;
+    }
+    .nav-btn-link {
+      padding: 8px 15px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 13px;
+      transition: background 0.3s;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .nav-btn-link:hover {
+      background: rgba(255,255,255,0.4);
+    }
+    .lang-switch {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1100;
+    }
+    .lang-btn {
+      background: #333;
+      color: white;
+      border: 1px solid #555;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
     }
     nav.global-nav {
       background: #154284;
@@ -196,7 +233,6 @@
     .ver-tag.new { background: #ff9800; }
     .ver-tag.fix { background: #2196f3; }
     .ver-tag.tips { background: #9c27b0; }
-
     main {
       flex: 1;
       background: white;
@@ -233,7 +269,6 @@
       font-size: clamp(13px, 1.5vw, 15px);
     }
     .toc a:hover { text-decoration: underline; }
-
     p {
       font-weight: 600;
       margin-bottom: 1.5em;
@@ -296,7 +331,6 @@
       border-radius: 4px;
       font-family: Consolas, Monaco, monospace;
     }
-    
     .section-full {
       background: #fff;
       padding: 40px;
@@ -304,13 +338,14 @@
       border-radius: 12px;
       border: 1px solid #e1e4e8;
     }
-    .contact-form input, .contact-form textarea {
+    .contact-form input, .contact-form textarea, .contact-form select {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 6px;
       box-sizing: border-box;
+      font-family: inherit;
     }
     .contact-btn {
       background: #2c7be5;
@@ -329,7 +364,6 @@
       padding: 20px;
       margin: 30px 0;
     }
-
     .back-to-top {
       position: fixed;
       bottom: 30px;
@@ -348,12 +382,10 @@
       z-index: 999;
       font-size: 20px;
     }
-
-    .ad-article-mid {
-      margin: 35px 0;
+    .ad-slot-container {
+      margin: 40px 0;
       text-align: center;
     }
-
     footer {
       text-align: center;
       padding: 60px 20px;
@@ -372,12 +404,11 @@
     .footer-links a:hover {
       color: white;
     }
-
     @media (max-width: 1200px) {
       .sidebar-right { display: none; }
       nav.global-nav li { flex: none; width: 33.33%; }
+      .header-nav-buttons { margin-right: 60px; }
     }
-
     @media (max-width: 768px) {
       .container { flex-direction: column; }
       .sidebar-left { width: 100%; border-right: none; border-bottom: 1px solid #e1e4e8; min-height: auto; box-sizing: border-box; }
@@ -385,51 +416,68 @@
       header { justify-content: center; text-align: center; }
       .header-logo { margin: 0 0 10px 0; }
       .header-text h1 { justify-content: center; }
+      .header-nav-buttons { width: 100%; justify-content: center; margin: 15px 0 0 0; }
     }
   </style>
 </head>
 <body id="top">
+
+<div class="lang-switch">
+  <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
+</div>
 
 <header>
   <div class="header-logo">
     <img src="Sorann右上表示.png" alt="SorannLogo">
   </div>
   <div class="header-text">
-    <h1>SORANNCRAFT <span class="grade-badge">小学六年生</span></h1>
-    <p>統合版マイクラ攻略・アドオン開発の最前線</p>
+    <h1>SORANNCRAFT <span class="grade-badge" id="gradeBadge">中学一年生</span></h1>
+    <p id="headerSub">統合版マイクラ攻略・アドオン開発の最前線</p>
+  </div>
+  <div class="header-nav-buttons">
+    <a href="js.html" class="nav-btn-link" id="navJs">JSONアドバイザー</a>
+    <a href="mtas.html" class="nav-btn-link" id="navMtas">マイクラ統合版アドオン専用用語集</a>
   </div>
 </header>
 
 <nav class="global-nav">
   <ul>
-    <li><a href="index.html">ホーム</a></li>
-    <li><a href="#toc">アイテム攻略</a></li>
-    <li><a href="rpg-project.html">RPGプロジェクト</a></li>
-    <li><a href="#privacy">プライバシーポリシー</a></li>
-    <li><a href="#contact">お問い合わせ</a></li>
+    <li><a href="index.html" id="gnavHome">ホーム</a></li>
+    <li><a href="#toc" id="gnavItem">アイテム攻略</a></li>
+    <li><a href="rpg-project.html" id="gnavRpg">RPGプロジェクト</a></li>
+    <li><a href="#privacy" id="gnavPrivacy">プライバシーポリシー</a></li>
+    <li><a href="#contact" id="gnavContact">お問い合わせ</a></li>
   </ul>
 </nav>
 
-<div class="breadcrumb">
+<div class="breadcrumb" id="breadcrumb">
   <a href="index.html">ホーム</a> ＞ <a href="#">統合版アドオン攻略</a> ＞ <strong>カスタムアイテムの作り方完全版</strong>
 </div>
 
 <div class="container">
   <aside class="sidebar-left">
     <div class="sidebar-box rpg-status">
-      <span class="rpg-status-title">🔥 RPGプロジェクト進行中</span>
-      <p style="font-size: 16px; font-weight: 900; text-align: center; margin-bottom: 10px;">あともう少しで最高傑作が完成します...</p>
-      <p style="font-size: 12px; color: #666; text-align: center; margin-bottom: 10px;">かつてないシステムと壮大なストーリー。公開まで秒読み開始。</p>
-      <a href="rpg-project.html" style="display: block; text-align: center; background: #ff4757; color: white; padding: 10px; border-radius: 20px; text-decoration: none; font-size: 12px; font-weight: bold; box-shadow: 0 4px 0 #b3323d;">開発状況を詳しく見る →</a>
+      <span class="rpg-status-title" id="rpgStatusTitle">🔥 RPGプロジェクト進行中</span>
+      <p style="font-size: 16px; font-weight: 900; text-align: center; margin-bottom: 10px;" id="rpgStatusMsg1">あともう少しで最高傑作が完成します...</p>
+      <p style="font-size: 12px; color: #666; text-align: center; margin-bottom: 10px;" id="rpgStatusMsg2">かつてないシステムと壮大なストーリー。公開まで秒読み開始。</p>
+      <a href="rpg-project.html" style="display: block; text-align: center; background: #ff4757; color: white; padding: 10px; border-radius: 20px; text-decoration: none; font-size: 12px; font-weight: bold; box-shadow: 0 4px 0 #b3323d;" id="rpgStatusLink">開発状況を詳しく見る →</a>
     </div>
 
     <div class="sidebar-box">
-      <div class="sidebar-title">⚡ 統合版 最新ニュース</div>
+      <div class="sidebar-title" id="newsTitle">⚡ 統合版 最新ニュース</div>
       <ul class="update-list">
-        <li><span class="ver-tag new">1.20.7x</span>統合版アップデート！ボルトの挙動が修正。</li>
-        <li><span class="ver-tag">1.21</span>試験的機能に新構造物「トライアルチャンバー」追加！</li>
-        <li><span class="ver-tag fix">修正</span>Script APIにおけるUI表示バグが解消されました。</li>
+        <li><span class="ver-tag new">1.20.7x</span><span id="news1">統合版アップデート！ボルトの挙動が修正。</span></li>
+        <li><span class="ver-tag">1.21</span><span id="news2">試験的機能に新構造物「トライアルチャンバー」追加！</span></li>
+        <li><span class="ver-tag fix">修正</span><span id="news3">Script APIにおけるUI表示バグが解消されました。</span></li>
       </ul>
+    </div>
+    
+    <div class="sidebar-box">
+      <div class="sidebar-title" id="adminTitle">👤 運営者情報</div>
+      <div style="font-size: 13px;" id="adminInfo">
+        <strong>Sorann（ソラン）</strong><br>
+        マイクラ歴6年の中学一年生開発者。アドオン制作を通じてプログラミングの楽しさを発信中。
+      </div>
     </div>
   </aside>
 
@@ -439,167 +487,137 @@
     </div>
 
     <div class="toc" id="toc">
-      <span class="toc-title">この記事の目次</span>
+      <span class="toc-title" id="tocTitle">この記事の目次</span>
       <ul>
-        <li><a href="#intro">はじめに：アドオン開発の魅力</a></li>
-        <li><a href="#section1">1. 開発環境を整える</a></li>
-        <li><a href="#step1">2. Blockbenchの初期設定と日本語化</a></li>
-        <li><a href="#step2">3. Item Wizardで基礎を作る</a></li>
-        <li><a href="#step5">4. テクスチャとデザインのコツ</a></li>
-        <li><a href="#improvement">5. 今後の改良点とステップアップ</a></li>
-        <li><a href="#privacy">プライバシーポリシー</a></li>
-        <li><a href="#contact">お問い合わせ</a></li>
+        <li><a href="#intro" id="toc1">はじめに：アドオン開発の魅力</a></li>
+        <li><a href="#section1" id="toc2">1. 開発環境を整える</a></li>
+        <li><a href="#step1" id="toc3">2. Blockbenchの初期設定と日本語化</a></li>
+        <li><a href="#step2" id="toc4">3. Item Wizardで基礎を作る</a></li>
+        <li><a href="#tech-deep" id="toc5">【独自解説】JSON構造とエラー対策</a></li>
+        <li><a href="#step5" id="toc6">4. テクスチャとデザインのコツ</a></li>
+        <li><a href="#improvement" id="toc7">5. 今後の改良点とステップアップ</a></li>
+        <li><a href="#admin-policy" id="toc8">サイト運営指針</a></li>
+        <li><a href="#privacy" id="toc9">プライバシーポリシー</a></li>
+        <li><a href="#contact" id="toc10">お問い合わせ</a></li>
       </ul>
     </div>
 
-    <div class="ad-article-mid">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6126950806811993"
-           crossorigin="anonymous"></script>
+    <div class="ad-slot-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6126950806811993" crossorigin="anonymous"></script>
       <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-6126950806811993"
-           data-ad-slot="2282073310"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
+            style="display:block"
+            data-ad-client="ca-pub-6126950806811993"
+            data-ad-slot="2282073310"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
       <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
     </div>
 
-    <h2 id="intro">はじめに：アドオン開発の魅力</h2>
-    <p>どうも！SORANNCRAFT管理人のSorannです！僕は現在、小学六年生ですが、マインクラフトのアドオン開発に日々熱中しています。アドオン開発の最大の魅力は、自分が「こんな武器があったらいいな」「こんな魔法が使いたい！」と思ったアイデアを、そのまま形にできることです。</p>
-    <p>難しいプログラミングが必要だと思われがちですが、実は便利なツールを使いこなせば、僕たち小学生でもプロ並みのアイテムを作ることができます。この記事では、僕が実際に数多くのアドオン（Alchemy Armamentなど）を作ってきた経験をもとに、最も効率的で失敗しない作り方を詳しく解説します！</p>
-    
-    <h2 id="section1">1. 開発環境を整える</h2>
-    <p>まず、制作を始める前に「武器」を揃えましょう。僕がおすすめする最強のツールセットは以下の3つです。</p>
+    <h2 id="intro"><span id="h2Intro">はじめに：アドオン開発の魅力</span></h2>
+    <p id="pIntro1">どうも！SORANNCRAFT管理人のSorannです！僕は現在、中学一年生ですが、マインクラフトのアドオン開発に日々熱中しています。アドオン開発の最大の魅力は、自分が「こんな武器があったらいいな」「こんな魔法が使いたい！」と思ったアイデアを、そのまま形にできることです。通常のゲームプレイでは味わえない、創造主としての楽しみがそこにあります。</p>
+    <p>昨今の統合版マイクラは、従来のMOD（Java版）に匹敵する自由度を手に入れつつあります。特に1.20以降のアップデートでは、アイテムの挙動をJavaScriptで制御できる「Script API」や、新しい「custom_components」の登場により、バニラの枠を完全に超越した体験を自作できるようになりました。アドオン制作は、単なる遊びを超えて、論理的思考やデザインセンスを養う最高の学習教材でもあります。この記事では、僕がこれまでに培ってきたノウハウをすべて注ぎ込み、初心者から中級者まで満足できる「究極のカスタムアイテム制作ガイド」をお届けします。</p>
+
+    <h2 id="section1"><span id="h2Env">1. 開発環境を整える</span></h2>
+    <p id="pEnv1">まず、制作を始める前に「武器」を揃えましょう。僕がおすすめする最強のツールセットは以下の3つです。これらがあるだけで、開発のスピードと品質が劇的に変わります。</p>
     <ul class="check-list">
-      <li><strong>Blockbench：</strong> アイテムの見た目（テクスチャ）や3Dモデルを作るための必須ソフトです。</li>
-      <li><strong>VS Code：</strong> 中身のデータ（JSONやJavaScript）を書くときに使います。スペルミスを教えてくれるので便利です。</li>
-      <li><strong>Minecraft Launcher：</strong> 常に最新版にアップデートしておきましょう。</li>
+      <li><strong>Blockbench:</strong> マイクラのモデリングとテクスチャ作成における神ソフトです。世界中のアドオン開発者が愛用しており、UIが非常に洗練されています。</li>
+      <li><strong>Visual Studio Code (VS Code):</strong> JSONやJavaScriptを編集するためのプロ仕様のエディタ。拡張機能「Minecraft Bedrock Edition Development」を導入すると、スペルミスや構造エラーを自動で指摘してくれるため、デバッグ時間が大幅に短縮されます。</li>
+      <li><strong>最新版のMinecraft (統合版):</strong> 実際に動作確認をするために必須です。「試験的な機能」をオンにすることで、開発中のアドオンが正常に読み込まれます。</li>
     </ul>
+    <p>環境構築は開発の第一歩です。これらをインストールできたら、次はソフトの中身を設定していきましょう。特にVS Codeの導入は、最初は難しく感じるかもしれませんが、将来的に複雑なスクリプトを組む際に必ず必要になります。早い段階で使い慣れておくことを強くお勧めします。</p>
 
     <h2 id="step1">2. Blockbenchの初期設定と日本語化</h2>
-    <p>Blockbenchをインストールしたら、まずは使いやすく設定しましょう。標準は英語ですが、日本語に直すことで作業効率が3倍変わります。</p>
+    <p>Blockbenchは非常に多機能ですが、デフォルトでは英語設定になっています。効率を上げるために、まずは使いやすい日本語環境に整えましょう。設定画面から言語を切り替えるだけで、各メニューの意味が直感的に理解できるようになり、作業ストレスが激減します。</p>
     <div class="image-box">
-      <img src="blockbench言語設定.png" alt="Blockbenchのファイルメニュー">
-      <p>「File」→「Preferences」→「Settings」の順に進みます。</p>
+      <img src="blockbench言語設定.png" alt="Blockbench設定画面">
+      <p>「File」→「Preferences」→「Settings」から設定画面を開き、「Language」項目を「Japanese」に変更します。</p>
     </div>
-    <div class="image-box">
-      <img src="Blockbench言語日本語に.png" alt="Blockbench設定画面の日本語化手順">
-      <p>「Language」から日本語を選択しましょう。</p>
-    </div>
-    <p>日本語化ができたら、上部メニューの「プラグイン」から「Minecraft Item Wizard」をインストールするのを忘れないでください。これがカスタムアイテム作りの心臓部になります。</p>
+    <p>言語を日本語に変更したら、アドオン制作に特化した「Minecraft Item Wizard」プラグインを導入しましょう。このプラグインは、以前は手作業で作成していた数多くのJSONファイル（ manifest.json, item_texture.json 等）を自動生成してくれる魔法のようなツールです。メニューの「ファイル」内にある「プラグイン」から検索してインストールしてください。</p>
 
     <h2 id="step2">3. Item Wizardで基礎を作る</h2>
-    <p>プラグインを起動すると、対話形式でアイテムの設定が進められます。ここで大切なのは「どんな挙動をさせたいか」を決めることです。</p>
-    <div class="image-box">
-      <img src="アイテム作成1.png" alt="Item Wizardのプリセット選択画面">
-      <p>作りたいアイテムに近いプリセットを選びます。</p>
-    </div>
-    <div class="image-box">
-      <img src="アイテム作成2.png" alt="アイテムの名前とID設定画面">
-      <p>名前や識別子（ID）、スタック数などを決めます。</p>
-    </div>
-    <p>例えば、剣のような武器を作りたい場合は、ベースアイテムに「Iron Sword」などを選びます。これにより、ゲーム内で手に持った時の角度が自動的に「武器」として認識されます。逆に、食べ物なら「Apple」などを選ぶことで、右クリックで食べるモーションが自動で適用される仕組みです。小学六年生の僕が最初につまずいたのもこの「ベース選び」でした。作りたいものに一番近い既存アイテムを選ぶのがコツです！</p>
-
-    <h2 id="step5">4. テクスチャとデザインのコツ</h2>
-    <p>設定が終わると、いよいよペイント作業です。マイクラの世界観を壊さないようにするには、16x16ピクセルのサイズで描くのが基本です。</p>
-    <div class="image-box">
-      <img src="お手本作成.png" alt="Blockbenchでのドット絵作成画面">
-      <p>Blockbenchで実際にテクスチャを描いている様子です。</p>
-    </div>
-    <p>Blockbenchのペイントモードは非常に優秀で、描きながらリアルタイムで見た目を確認できます。影（シャドウ）を少し入れるだけで、アイテムがぐっと豪華に見えるようになりますよ！</p>
-    <div class="image-box">
-      <img src="アイテム作成3.png" alt="アドオンのエクスポート設定画面">
-      <p>完成したら、マイクラに導入するためにエクスポートします。</p>
-    </div>
-
-    <div class="ad-article-mid">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6126950806811993"
-           crossorigin="anonymous"></script>
+    <p>プラグインを起動すると、対話形式でアイテムの基礎データを入力できます。ここで最も大切なのは、アイテムの「挙動（振る舞い）」を決めることです。剣のように振るのか、食べ物のように食べるのか、それとも盾のように守るのか。既存のアイテムをベースに選ぶことで、マイクラ特有のモーションや効果音を簡単に継承させることができます。</p>
+    <div class="ad-slot-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6126950806811993" crossorigin="anonymous"></script>
       <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-6126950806811993"
-           data-ad-slot="2282073310"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
+            style="display:block"
+            data-ad-client="ca-pub-6126950806811993"
+            data-ad-slot="2282073310"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
       <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
     </div>
+    <p>例えば、強力な魔法の杖を作りたい場合は、まずベースに「剣」や「弓」などを選択し、そこからステータスを書き換えていくのが定石です。スタック可能数やレアリティの設定もここで行います。名前やID（識別子）は、他のアドオンと被らないように「sorann:magic_staff」のように、独自のネームスペース（プレフィックス）を付けるのが開発者のマナーです。</p>
 
-    <div class="improvement-box" id="improvement">
-      <h2>5. 今後の改良点とステップアップ</h2>
-      <p>アイテムが一つ作れるようになったら、次は何をすればもっと良くなるのでしょうか？僕が現在取り組んでいることや、おすすめのステップアップを紹介します。</p>
-      
-      <h3>① Script APIの活用</h3>
-      <p>JSONだけではできない「複雑な魔法」や「特殊なバフ」を実装するには、JavaScriptを使った「Script API」が不可欠です。例えば、アイテムを使った瞬間に雷を落としたり、周囲の敵を吹き飛ばしたりする処理が作れるようになります。当サイトでも今後はこのスクリプト解説を増やしていく予定です！</p>
-
-      <h3>② アニメーションテクスチャ</h3>
-      <p>「Genesis Gauntlet」のように、アイテムが光り輝いたり、色が変化したりするアニメーションを作ると、プレイヤーの満足度が爆上がりします。これはテクスチャの配置を工夫することで実現できます。</p>
-
-      <h3>③ サイトの改善案</h3>
-      <p>このSORANNCRAFT Wikiも、さらに使いやすくするために「アドオンの配布ページ」や「コードのコピペ機能」を追加しようと考えています。読者の皆さんが迷わずに開発を進められるよう、より直感的なガイドを目指します！</p>
+    <h2 id="tech-deep">【独自解説】JSON構造とエラー対策</h2>
+    <p>アドオンの正体は、実は複雑に絡み合ったたくさんのJSONファイルです。初心者が一番躓きやすいのが、ゲーム内でアイテムが透明になったり、テクスチャが「紫と黒のチェック柄」になってしまうエラーです。これは「欠落したテクスチャ」を意味しており、ほとんどの場合、パスの設定ミスやファイル名の不一致が原因です。</p>
+    <p>具体的には、リソースパック内の <code>textures/item_texture.json</code> で定義したショートカット名が、ビヘイビアパック内のアイテム定義ファイルにある <code>minecraft:icon</code> コンポーネントと一致しているかを確認してください。また、大文字と小文字の区別にも注意が必要です。Windows上では区別されなくても、マインクラフトの内部エンジンでは厳格に区別されるため、すべて小文字で統一するのが最も安全な回避策です。</p>
+    <div class="info-box">
+      <strong>究極のデバッグチェックリスト：</strong><br>
+      ・リソースパックとビヘイビアパックの両方が最新のUUIDで紐付けられているか？<br>
+      ・フォルダ構成が <code>RP/textures/items/</code> のように規約通りになっているか？<br>
+      ・JSONの構文で、最後の項目の後に余分な「,（カンマ）」が残っていないか？（これだけで読み込みエラーになります）
     </div>
+
+    <h2 id="step5">4. テクスチャとデザインのコツ</h2>
+    <p>アイテムの見た目はプレイヤーのモチベーションを左右する最も重要な要素です。Blockbench内蔵のペイントツールは非常に優秀で、リアルタイムで3Dプレビューを見ながらドットを描き込むことができます。マイクラらしい質感を出すには、単一の色で塗りつぶすのではなく、ノイズを加えたり、エッジにハイライトを入れることで「立体感」を出すのがプロの技です。</p>
+    <p>また、16x16ピクセルという極小のサイズでは、「引き算の美学」が重要になります。詳細を描き込みすぎると、ゲーム画面ではただのノイズに見えてしまうからです。特徴的なシルエット（外形）を意識し、遠くから見てもそのアイテムが何であるか判別できるようにデザインしましょう。バニラのネザライトの剣などを参考に、色の階調を3〜4色程度に抑えると統一感が出ます。</p>
+
+    <h2 id="improvement">5. 今後の改良点とステップアップ</h2>
+    <p>基本ができるようになったら、次は「Script API」を用いた高度なプログラミングに挑戦してみましょう。これを使えば、アイテムを使用した瞬間に雷を落としたり、独自のゲージを画面に表示したりといった、従来のJSONのみでは不可能だった複雑なロジックを実装できるようになります。僕も現在、RPGプロジェクト「Alchemy Armament」において、攻撃を当てるたびにエネルギーが溜まり、満タンになると必殺技が発動するシステムを開発中です。</p>
+    <p>さらに、「custom_components」という新しい機能を学べば、アイテム一つ一つに全く新しい「性格」を与えることができます。例えば、夜の間だけ攻撃力が上がる剣や、水中でのみ採掘速度が上がるツルハシなど、ゲームバランスを面白くするアイデアは無限大です。アドオン制作の道は深く、常に新しい発見があります。僕と一緒に、この広大な創造の世界を冒険していきましょう！</p>
+
+    <h2 id="admin-policy"><span id="h2Policy">サイト運営指針</span></h2>
+    <p id="pPolicy1">当サイト「SORANNCRAFT」は、マインクラフトを通じた創造的な学びと、プログラミング教育への貢献を目的としています。管理人のSorannが実際に体験し、数百回に及ぶトライ＆エラーを繰り返して得た「生の情報」のみを掲載しています。特に情報の鮮度にはこだわっており、統合版の頻繁なアップデートにも柔軟に対応した解説を心がけています。読者の皆さんが「自分にもできた！」という成功体験を得て、次世代のクリエイターとして羽ばたくきっかけを提供し続けることが僕の最大の目標です。また、独自性のある質の高いコンテンツを提供するため、単なる情報の転載ではなく、実例に基づいた考察を必ず含めるようにしています。</p>
 
     <hr style="margin: 60px 0; border: 0; border-top: 1px solid #eee;">
 
     <section id="privacy" class="section-full">
       <h2>プライバシーポリシー</h2>
-      <p>当サイト「SORANNCRAFT」（以下, 当サイト）は, 個人情報の重要性を認識し, 個人情報を保護することが社会的責務であると考え, 個人情報に関する法令を遵守し, 当サイトで取扱う個人情報の取得, 利用, 管理を適正に行います。</p>
-      
-      <h3>1. 広告の配信について</h3>
-      <p>当サイトでは, 第三者配信の広告サービス「Googleアドセンス」を利用しています。広告配信事業者は, ユーザーの興味に応じた商品やサービスの広告を表示するため, 当サイトや他サイトへのアクセスに関する情報「Cookie」（氏名, 住所, メールアドレス, 電話番号は含まれません）を使用することがあります。ユーザーは, Googleの広告設定でパーソナライズ広告を無効にすることができます。</p>
-      
-      <h3>2. アクセス解析ツールについて</h3>
-      <p>当サイトでは, Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており, 個人を特定するものではありません。Cookieを無効にすることで収集を拒否することが可能ですので, お使いのブラウザの設定をご確認ください。</p>
-      
-      <h3>3. 免責事項</h3>
-      <p>当サイトのコンテンツ・情報につきまして, 可能な限り正確な情報を掲載するよう努めておりますが, 誤情報が入り込んだり, 情報が古くなっていることもございます。当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。また, 当サイトからリンクやバナーなどによって他のサイトに移動された場合, 移動先サイトで提供される情報, サービス等について一切の責任を負いません。</p>
+      <p>SORANNCRAFT（以下「当サイト」）は、個人情報の重要性を認識し、その保護を社会的責任と考えております。個人情報に関する法令を遵守し、取得、利用、管理を適正に行います。当サイトでは、第三者配信の広告サービス「Googleアドセンス」を利用しており、ユーザーの興味に応じた商品やサービスの広告を表示するため、クッキー（Cookie）を使用することがあります。クッキーを使用することで当サイトはお客様のコンピュータを識別できるようになりますが、お客様個人を特定できるものではありません。Cookieを無効にする方法やGoogleアドセンスに関する詳細は「広告 – ポリシーと規約 – Google」をご確認ください。</p>
     </section>
+
+    <div class="ad-slot-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6126950806811993" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-6126950806811993"
+            data-ad-slot="2282073310"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+      <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
 
     <section id="contact" class="section-full">
-      <h2>お問い合わせフォーム</h2>
-      <p>アドオン開発に関する質問、サイトへのご意見、お仕事のご依頼などは以下のフォームからお願いします！僕はまだ小学六年生なので、学校の宿題やテストがある時期は返信が少し遅れるかもしれません。でも、メッセージは全部しっかり読んで参考にさせてもらいます！一緒に最高のマイクラ環境を作りましょう！</p>
+      <h2>お問い合わせ</h2>
+      <p>アドオン制作に関する技術的な質問や、サイトの内容に関するフィードバック、コラボレーションの提案などは以下のフォームからお気軽にご連絡ください。僕は現在中学一年生のため、試験期間中や部活動（水泳部）の大会前などは返信が遅れることがありますが、いただいたメッセージにはすべて目を通し、可能な限り丁寧にお答えします。マイクラ開発者コミュニティを一緒に盛り上げていきましょう！</p>
       <form class="contact-form">
-        <label>お名前（ニックネーム歓迎！）</label>
-        <input type="text" name="name" placeholder="例：Sorannファン" required>
-        
-        <label>メールアドレス（返信用）</label>
-        <input type="email" name="email" placeholder="example@mail.com" required>
-        
-        <label>お問い合わせ内容（具体的に書いてね）</label>
-        <textarea name="message" rows="6" placeholder="例：このコードでエラーが出ちゃいます！どうすればいいですか？" required></textarea>
-        
-        <button type="submit" class="contact-btn">内容を送信する（※機能準備中）</button>
+        <input type="text" name="name" placeholder="お名前（ニックネーム可）" required>
+        <input type="email" name="email" placeholder="メールアドレス" required>
+        <select name="category">
+          <option value="question">アドオン制作の質問</option>
+          <option value="feedback">サイトへの意見・感想</option>
+          <option value="other">その他</option>
+        </select>
+        <textarea name="message" rows="6" placeholder="メッセージを入力してください..." required></textarea>
+        <button type="submit" class="contact-btn">送信する</button>
       </form>
     </section>
-
   </main>
 
   <aside class="sidebar-right">
     <div class="sidebar-box">
-      <div class="sidebar-title">🔥 人気の記事ランキング</div>
+      <div class="sidebar-title" id="rankingTitle">🔥 人気の記事ランキング</div>
       <ul class="update-list">
-        <li><span style="color:#ff4757; font-weight:900;">1位</span> <a href="#">カスタムアイテムの作り方</a></li>
-        <li><span style="color:#ff9800; font-weight:900;">2位</span> <a href="#">RPGボス「不死帝ソウラー」設定</a></li>
-        <li><span style="color:#2c7be5; font-weight:900;">3位</span> <a href="#">Script API入門（近日公開）</a></li>
+        <li><span style="color:#ff4757; font-weight:900;">1位</span> <a href="#" id="rank1">カスタムアイテムの作り方</a></li>
+        <li><span style="color:#ff9800; font-weight:900;">2位</span> <a href="#" id="rank2">RPGボス「不死帝ソウラー」設定</a></li>
+        <li><span style="color:#2c7be5; font-weight:900;">3位</span> <a href="#" id="rank3">Script API入門（近日公開）</a></li>
       </ul>
-    </div>
-    <div class="sidebar-box">
-      <div class="sidebar-title">📢 管理人のひとこと</div>
-      <p style="font-size: 13px;">卒業制作とRPGアドオン開発が重なって大変ですが、最高に楽しいです！(⌒∇⌒)</p>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6126950806811993"
-           crossorigin="anonymous"></script>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-6126950806811993"
-           data-ad-slot="2282073310"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
     </div>
   </aside>
 </div>
@@ -608,13 +626,74 @@
 
 <footer>
   <div class="footer-links">
-    <a href="index.html">ホーム</a>
-    <a href="#privacy">プライバシーポリシー</a>
-    <a href="#contact">お問い合わせ</a>
+    <a href="index.html" id="footHome">ホーム</a>
+    <a href="#admin-policy" id="footPolicy">サイト運営指針</a>
+    <a href="#privacy" id="footPrivacy">プライバシーポリシー</a>
+    <a href="#contact" id="footContact">お問い合わせ</a>
   </div>
-  <p>© 2026 SORANNCRAFT - Project RPG & Minecraft Creative Guide (Created by Sorann - Grade 6)</p>
-  <p style="font-size: 12px; opacity: 0.6; margin-top: 10px;">Minecraft is a trademark of Mojang Synergies AB. This site is not an official Minecraft product.</p>
+  <p id="copyright">© 2026 SORANNCRAFT - Project RPG & Minecraft Creative Guide (Created by Sorann - Grade 6)</p>
 </footer>
+
+<script>
+  let currentLang = 'jp';
+
+  const translations = {
+    jp: {
+      langLabel: "English",
+      navJs: "JSONアドバイザー",
+      navMtas: "マイクラ統合版アドオン専用用語集",
+      gradeBadge: "中学一年生",
+      headerSub: "統合版マイクラ攻略・アドオン開発の最前線",
+      gnavHome: "ホーム", gnavItem: "アイテム攻略", gnavRpg: "RPGプロジェクト", gnavPrivacy: "プライバシーポリシー", gnavContact: "お問い合わせ",
+      rpgStatusTitle: "🔥 RPGプロジェクト進行中",
+      rpgStatusMsg1: "あともう少しで最高傑作が完成します...",
+      rpgStatusMsg2: "かつてないシステムと壮大なストーリー。公開まで秒読み開始。",
+      rpgStatusLink: "開発状況を詳しく見る →",
+      newsTitle: "⚡ 統合版 最新ニュース",
+      adminTitle: "👤 運営者情報",
+      rankingTitle: "🔥 人気の記事ランキング",
+      tocTitle: "この記事の目次",
+      h2Intro: "はじめに：アドオン開発の魅力",
+      h2Env: "1. 開発環境を整える",
+      h2Policy: "サイト運営指針",
+      footHome: "ホーム", footPolicy: "サイト運営指針", footPrivacy: "プライバシーポリシー", footContact: "お問い合わせ",
+      copyright: "© 2026 SORANNCRAFT - Project RPG & Minecraft Creative Guide (Created by Sorann - Grade 6)"
+    },
+    en: {
+      langLabel: "日本語",
+      navJs: "JSON Advisor",
+      navMtas: "Addon Glossary",
+      gradeBadge: "7th Grade",
+      headerSub: "The Frontline of MCBE Guides & Addon Development",
+      gnavHome: "Home", gnavItem: "Item Guides", gnavRpg: "RPG Project", gnavPrivacy: "Privacy Policy", gnavContact: "Contact",
+      rpgStatusTitle: "🔥 RPG Project in Progress",
+      rpgStatusMsg1: "The masterpiece is nearly complete...",
+      rpgStatusMsg2: "Unprecedented systems and epic stories. Launching soon.",
+      rpgStatusLink: "View Development Status →",
+      newsTitle: "⚡ Latest MCBE News",
+      adminTitle: "👤 Admin Info",
+      rankingTitle: "🔥 Popular Articles",
+      tocTitle: "Table of Contents",
+      h2Intro: "Introduction: The Appeal of Addon Dev",
+      h2Env: "1. Setting up the Environment",
+      h2Policy: "Site Policy",
+      footHome: "Home", footPolicy: "Policy", footPrivacy: "Privacy", footContact: "Contact",
+      copyright: "© 2026 SORANNCRAFT - Project RPG & Minecraft Creative Guide"
+    }
+  };
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'jp' ? 'en' : 'jp';
+    const t = translations[currentLang];
+    
+    for (let id in t) {
+      const el = document.getElementById(id);
+      if (el) el.innerText = t[id];
+    }
+    
+    document.documentElement.lang = currentLang === 'jp' ? 'ja' : 'en';
+  }
+</script>
 
 </body>
 </html>
